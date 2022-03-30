@@ -46,7 +46,7 @@ st.markdown("""## Locations held per skirmish
 """)
 
 skirmish_df = pd.read_json('skirmish.json', lines=True).rename(columns={'defense':'LOCATIONS_HELD'})
-skirmish_chart = px.line(skirmish_df, x='skirmish', y='LOCATIONS_HELD', color='owner', markers=True)
+skirmish_chart = px.line(skirmish_df, x='skirmish', y='LOCATIONS_HELD', color='owner')
 st.plotly_chart(skirmish_chart, use_container_width=True)
 
 st.markdown("""## Locations held per skirmish - cumulative
@@ -54,5 +54,5 @@ st.markdown("""## Locations held per skirmish - cumulative
 
 skirmish_df['LOCATIONS_HELD_CUMSUM'] = skirmish_df.groupby('owner')['LOCATIONS_HELD'].cumsum(axis=0).reset_index()['LOCATIONS_HELD']
 
-skirmish_cumsum_chart = px.line(skirmish_df, x='skirmish', y='LOCATIONS_HELD_CUMSUM', color='owner', markers=True)
+skirmish_cumsum_chart = px.line(skirmish_df, x='skirmish', y='LOCATIONS_HELD_CUMSUM', color='owner')
 st.plotly_chart(skirmish_cumsum_chart, use_container_width=True)
